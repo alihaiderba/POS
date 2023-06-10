@@ -270,7 +270,11 @@ public class AdminGUI extends JFrame {
             @Override
             public void run() {
                 AdminGUI adminGUI = new AdminGUI();
+                System.out.println(".");
             }
         });
     }
+    
+    
 }
+
