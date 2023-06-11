@@ -20,7 +20,7 @@ public class AdminGUI extends JFrame {
 
         setTitle("Admin Panel");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(400, 400);
+        setSize(500, 500);
         setLocationRelativeTo(null);
 
         JPanel panel = new JPanel();
