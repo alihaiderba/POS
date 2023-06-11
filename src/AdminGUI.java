@@ -1,4 +1,5 @@
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -24,14 +25,19 @@ public class AdminGUI extends JFrame {
         setLocationRelativeTo(null);
 
         JPanel panel = new JPanel();
-        panel.setLayout(new GridLayout(7, 1));
+        panel.setLayout(new BorderLayout());
+        panel.setBorder(new EmptyBorder(10, 10, 10, 10));
 
         JLabel titleLabel = new JLabel("Admin Panel");
         titleLabel.setHorizontalAlignment(JLabel.CENTER);
-        panel.add(titleLabel);
+        titleLabel.setFont(new Font("Arial", Font.BOLD, 24));
+        panel.add(titleLabel, BorderLayout.NORTH);
 
-        JButton createAccountButton = new JButton("Create New Cashier Account");
-        panel.add(createAccountButton);
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.setLayout(new GridLayout(6, 1, 10, 10));
+
+        JButton createAccountButton = createStyledButton("Create New Cashier Account");
+        buttonPanel.add(createAccountButton);
         createAccountButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -39,8 +45,8 @@ public class AdminGUI extends JFrame {
             }
         });
 
-        JButton deleteAccountButton = new JButton("Delete Cashier Account");
-        panel.add(deleteAccountButton);
+        JButton deleteAccountButton = createStyledButton("Delete Cashier Account");
+        buttonPanel.add(deleteAccountButton);
         deleteAccountButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -48,8 +54,8 @@ public class AdminGUI extends JFrame {
             }
         });
 
-        JButton updateAccountButton = new JButton("Update Account");
-        panel.add(updateAccountButton);
+        JButton updateAccountButton = createStyledButton("Update Account");
+        buttonPanel.add(updateAccountButton);
         updateAccountButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -57,8 +63,8 @@ public class AdminGUI extends JFrame {
             }
         });
 
-        JButton viewInventoryButton = new JButton("View Inventory");
-        panel.add(viewInventoryButton);
+        JButton viewInventoryButton = createStyledButton("View Inventory");
+        buttonPanel.add(viewInventoryButton);
         viewInventoryButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -66,8 +72,8 @@ public class AdminGUI extends JFrame {
             }
         });
 
-        JButton viewSalesButton = new JButton("View Sales");
-        panel.add(viewSalesButton);
+        JButton viewSalesButton = createStyledButton("View Sales");
+        buttonPanel.add(viewSalesButton);
         viewSalesButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -75,8 +81,8 @@ public class AdminGUI extends JFrame {
             }
         });
 
-        JButton addItemButton = new JButton("Add Items");
-        panel.add(addItemButton);
+        JButton addItemButton = createStyledButton("Add Items");
+        buttonPanel.add(addItemButton);
         addItemButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -84,13 +90,27 @@ public class AdminGUI extends JFrame {
             }
         });
 
+        panel.add(buttonPanel, BorderLayout.CENTER);
+
         outputTextArea = new JTextArea();
-        panel.add(outputTextArea);
+        outputTextArea.setEditable(false);
+        outputTextArea.setFont(new Font("Arial", Font.PLAIN, 14));
+        JScrollPane scrollPane = new JScrollPane(outputTextArea);
+        panel.add(scrollPane, BorderLayout.SOUTH);
 
         add(panel);
         setVisible(true);
     }
 
+    private JButton createStyledButton(String text) {
+        JButton button = new JButton(text);
+        button.setFont(new Font("Arial", Font.BOLD, 16));
+        button.setBackground(new Color(59, 89, 182));
+        button.setForeground(Color.WHITE);
+        button.setFocusPainted(false);
+        button.setBorder(BorderFactory.createEmptyBorder(10, 25, 10, 25));
+        return button;
+    }
     private void createAccount() {
         String name = JOptionPane.showInputDialog(this, "Enter Cashier Name:");
         String password = JOptionPane.showInputDialog(this, "Enter Password:");
