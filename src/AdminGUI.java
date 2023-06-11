@@ -96,7 +96,8 @@ public class AdminGUI extends JFrame {
         String password = JOptionPane.showInputDialog(this, "Enter Password:");
 
         if (name != null && password != null && !name.isEmpty() && !password.isEmpty()) {
-            Cashier cashier = new Cashier(name, password);
+            CashierFactory cashierFactory = new CashierFactory();
+            Cashier cashier = cashierFactory.createCashier(name, password);
             cashiers.add(cashier);
 
             outputTextArea.setText("Cashier account created:\n" + cashier.toString());
@@ -210,6 +211,17 @@ public class AdminGUI extends JFrame {
         }
     }
 
+    private interface CashierFactoryInterface {
+        Cashier createCashier(String name, String password);
+    }
+
+    private class CashierFactory implements CashierFactoryInterface {
+        @Override
+        public Cashier createCashier(String name, String password) {
+            return new Cashier(name, password);
+        }
+    }
+
     private class Cashier {
         private String name;
         private String password;
@@ -270,11 +282,8 @@ public class AdminGUI extends JFrame {
             @Override
             public void run() {
                 AdminGUI adminGUI = new AdminGUI();
-                System.out.println(".");
             }
         });
     }
-    
-    
 }
 
