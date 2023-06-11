@@ -94,8 +94,10 @@ public class AdminGUI extends JFrame {
 
         outputTextArea = new JTextArea();
         outputTextArea.setEditable(false);
-        outputTextArea.setFont(new Font("Arial", Font.PLAIN, 20)); 
+        outputTextArea.setFont(new Font("Arial", Font.PLAIN, 16));
+
         JScrollPane scrollPane = new JScrollPane(outputTextArea);
+        scrollPane.setPreferredSize(new Dimension(100, 100)); 
         panel.add(scrollPane, BorderLayout.SOUTH);
 
         add(panel);
@@ -104,14 +106,13 @@ public class AdminGUI extends JFrame {
 
     private JButton createStyledButton(String text) {
         JButton button = new JButton(text);
-        button.setFont(new Font("Arial", Font.BOLD, 14));
+        button.setFont(new Font("Arial", Font.BOLD, 16));
         button.setBackground(new Color(59, 89, 182));
         button.setForeground(Color.WHITE);
         button.setFocusPainted(false);
         button.setBorder(BorderFactory.createEmptyBorder(10, 25, 10, 25));
         return button;
     }
-
     private void createAccount() {
         String name = JOptionPane.showInputDialog(this, "Enter Cashier Name:");
         String password = JOptionPane.showInputDialog(this, "Enter Password:");
