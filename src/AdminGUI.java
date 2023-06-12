@@ -97,7 +97,7 @@ public class AdminGUI extends JFrame {
         outputTextArea.setFont(new Font("Arial", Font.PLAIN, 16));
 
         JScrollPane scrollPane = new JScrollPane(outputTextArea);
-        scrollPane.setPreferredSize(new Dimension(100, 100)); 
+        scrollPane.setPreferredSize(new Dimension(200, 100)); 
         panel.add(scrollPane, BorderLayout.SOUTH);
 
         add(panel);
